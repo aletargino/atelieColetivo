@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ateliê Coletivo - Cadastro de peças</title>
+
+        <link rel="stylesheet" type="text/css" href="estilos.css">
+    </head>
+
+    <body>
+        <div class="cabecalho cabecalho-admin">
+            
+            <div class="menu">
+            <h1 class="logo">Ateliê Coletivo</h1>
+            <nav>
+                <a href="pecas.html">Cadastrar Peças</a>
+                <a href="lista-contato.html">Contatos</a>
+            </nav>
+            </div>
+        
+        </div>
+
+        <div class="conteudo">
+            <p>Cadastro de peças para venda</p>
+            <p>Para adicionar uma nova peça, preencha o formulário abaixo:</p>
+    
+            <form id="cadastro">
+                <label for="marca">Marca:</label>
+                <br>
+                <input type="text" name="marca" placeholder="Quem fez" required>
+                <br>
+                <label for="nome">Nome:</label>
+                <br>
+                <input type="text" name="nome" placeholder="Título da peça" required>
+                <br>
+                <label for="utilidade">Utilidade:</label>
+                <br>
+                <input type="text" name="utilidade" placeholder="Utilidade" required>
+                <br>
+                <label for="preco">Preço:</label>
+                <br>
+                <input type="text" name="preco" placeholder="Preço" required>
+                <br>
+                <label for="imagem">Imagem do item:</label>
+                <br>
+                <input type="text" name="imagem" placeholder="http://pecas.com/exemplo1.jpg" required>
+                <br>
+                <label for="descricao">Descrição:</label>
+                <br>
+                <textarea name="descricao" id="descricao" rows="5" 
+                placeholder="Linda caneca!"></textarea>  
+                <br>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+
+
+    </body>
+</html>
