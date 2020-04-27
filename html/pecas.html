@@ -17,3 +17,26 @@
             </div>
             
         </div>
+
+        <p>Veja aqui nosso catálago de peças de artistas de todo o Brasil!</p>
+
+        <div class="conteudo">
+            <h2>Lista de Peças</h2>
+
+            <label for="filtroArtista">Filtrar Artista:</label>
+            <select id="filtroArtista" value="" onchange="filtrarAtista()">
+            
+            </select>
+
+            <label for="limiteDePecas">Limitar Número de Peças:</label>
+            <select id="limiteDePecas" value="" onchange="ajustarLimiteDePecas()">
+            <option value="5" selected>5 pecas</option>
+            <option value="15">15 pecas</option>
+            <option value="25">25 pecas</option>
+            <option value="50">50 pecas</option>
+            </select>
+            
+            <div id="pecas"></div>
+        </div>
+
+        

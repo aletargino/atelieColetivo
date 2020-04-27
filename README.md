@@ -1,0 +1,1 @@
+Loja virtual colaborativa desenvolvida por Alessandra Targino.

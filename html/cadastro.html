@@ -25,9 +25,9 @@
             <p>Para adicionar uma nova peça, preencha o formulário abaixo:</p>
     
             <form id="cadastro">
-                <label for="marca">Marca:</label>
+                <label for="artista">Artista:</label>
                 <br>
-                <input type="text" name="marca" placeholder="Quem fez" required>
+                <input type="text" name="artista" placeholder="Quem fez" required>
                 <br>
                 <label for="nome">Nome:</label>
                 <br>
@@ -64,7 +64,7 @@
         var dadosDeCadastro = new FormData(formDeCadastro);
 
         var peca = {
-        marca: dadosDeCadastro.get("marca"),
+        artista: dadosDeCadastro.get("artista"),
         nome: dadosDeCadastro.get("nome"),
         utilidade: dadosDeCadastro.get("utilidade"),
         preco: Number (dadosDeCadastro.get("preco")),
