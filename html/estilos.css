@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+
 body {
     font-size: 18px;
-    font-family: Arial, sans-serif;
+    font-family: 'Poiret One', cursive;
     margin: 0;
 }
 
@@ -26,6 +28,7 @@ h1{
 
 .logo {
     color:#ffffff;
+    
 }
 
 .menu {
@@ -39,7 +42,7 @@ h1{
 }
 
 .menu a {
-    color: #beb3b3;
+    color: #ffffff;
     margin: 10px;
     font-weight: bold;
     text-decoration: none;

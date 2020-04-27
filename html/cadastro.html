@@ -43,7 +43,7 @@
                 <br>
                 <label for="imagem">Imagem do item:</label>
                 <br>
-                <input type="text" name="imagem" placeholder="http://pecas.com/exemplo1.jpg" required>
+                <input type="text" name="imagem" placeholder="http://pecas.com/exemplo1.jpg">
                 <br>
                 <label for="descricao">Descrição:</label>
                 <br>
@@ -57,3 +57,58 @@
 
     </body>
 </html>
+
+<script>
+    function cadastrarPeca(event) {
+        event.preventDefault();
+        var dadosDeCadastro = new FormData(formDeCadastro);
+
+        var peca = {
+        marca: dadosDeCadastro.get("marca"),
+        nome: dadosDeCadastro.get("nome"),
+        utilidade: dadosDeCadastro.get("utilidade"),
+        preco: Number (dadosDeCadastro.get("preco")),
+        descricao: dadosDeCadastro.get("descricao"),
+        imagem: dadosDeCadastro.get("imagem"),
+        };
+
+        if (isNaN(peca.preco)){
+          alert("Preço está incorreto!");
+        }else if (peca.preco <= 0){
+          alert("Preço precisa ser maior que zero!");
+          return false;
+        }
+
+        var totalDePecas = salvaPeca(peca);
+
+        var mensagem = "Sua peça " + peca.nome + " foi cadastrada com sucesso! Total de peças cadastradas: " + totalDePecas;
+        alert(mensagem);
+
+        formDeCadastro.reset();
+
+    }
+
+    var formDeCadastro = document.getElementById("cadastro");
+    formDeCadastro.addEventListener("submit", cadastrarPeca);
+
+    function salvarPeca (peca) {
+        var bancoDePecasTexto = localStorage.getItem("pecas");
+
+
+        var listaDePecas;
+        if (!bandoDePecasTexto) {
+            listaDePecas = [];
+        }else {
+            listaDePecas = JSON.parse(bancoDePecasTexto);
+        }
+
+        listaDePecas.push(peca);
+
+        bancoDePecasTexto = JSON.stringify(listaDePecas);
+
+        localStorage.setItem("pecas", bancoDePecasTexto);
+
+        return listaDePecas.length;
+    }
+
+</script>

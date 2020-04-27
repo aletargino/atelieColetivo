@@ -49,7 +49,48 @@
         </div>
 
         <script>
-            
+            function enviarContato(event){
+                event.preventDefault();
+                var dadosDeContato = new FormData(formDeContato);
+        
+                var contato = {
+               nomeCompleto: dadosDeContato.get("nomeCompleto"),
+               telefone: dadosDeContato.get("telefone"),
+               email: dadosDeContato.get("email"),
+               mensagem: dadosDeContato.get("mensagem"),
+               dataHora: Date.now(),
+               };
+        
+               salvarContato(contato);
+               
+               var mensagem = "Ei, " + contato.nomeCompleto + ", sua mensagem foi enviada com sucesso, por favor,aguarde nosso retorno!"
+               alert(mensagem);
+        
+               formDeContato.reset();
+            } 
+
+            var formDeContato = document.getElementById("contato");
+            formDeContato.addEventListener("submit", enviarContato);
+        
+              function salvarContato(contato) {
+              var contatoEmTexto = localStorage.getItem("contatos");
+        
+              var listaDeContatos;
+              if (!contatoEmTexto){
+                  listaDeContatos = [];
+              } else {
+                  listaDeContatos = JSON.parse(contatoEmTexto);
+              }
+        
+              listaDeContatos.push(contato);
+        
+              contatoEmTexto = JSON.stringify(listaDeContatos);
+        
+              localStorage.setItem("contatos", contatoEmTexto);
+        
+              return listaDeContatos.lenght;
+           }
+        
         </script>
         
 
