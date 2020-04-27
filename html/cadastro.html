@@ -79,7 +79,7 @@
           return false;
         }
 
-        var totalDePecas = salvaPeca(peca);
+        var totalDePecas = salvarPeca(peca);
 
         var mensagem = "Sua peça " + peca.nome + " foi cadastrada com sucesso! Total de peças cadastradas: " + totalDePecas;
         alert(mensagem);
@@ -96,7 +96,7 @@
 
 
         var listaDePecas;
-        if (!bandoDePecasTexto) {
+        if (!bancoDePecasTexto) {
             listaDePecas = [];
         }else {
             listaDePecas = JSON.parse(bancoDePecasTexto);
