@@ -1,42 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt">
-    <head>
-        <meta charset="UTF-8">
-        <title>Ateliê Coletivo - Peças Cadastradas</title>
 
-        <link rel="stylesheet" type="text/css" href="estilos.css">
-    </head>
-    <body>
-        <div class="cabecalho">
-            <div class="menu">
-                <h1 class="logo">Ateliê Coletivo</h1>
-                <nav>
-                    <a href="pecas.html">Loja Virtual</a>
-                    <a href="contato.html">Contato</a>
-                </nav>
-            </div>
-            
+<head>
+    <meta charset="UTF-8">
+    <title>Ateliê Coletivo - Peças Cadastradas</title>
+
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+</head>
+
+<body>
+    <div class="cabecalho">
+        <div class="menu">
+            <h1 class="logo">Ateliê Coletivo</h1>
+            <nav>
+                <a href="pecas.html">Loja Virtual</a>
+                <a href="contato.html">Contato</a>
+            </nav>
         </div>
 
-        <p>Veja aqui nosso catálago de peças de artistas de todo o Brasil!</p>
+    </div>
 
-        <div class="conteudo">
-            <h2>Lista de Peças</h2>
+    <p>Veja aqui nosso catálago de peças de artistas de todo o Brasil!</p>
 
-            <label for="filtroArtista">Filtrar Artista:</label>
-            <select id="filtroArtista" value="" onchange="filtrarAtista()">
-            
-            </select>
+    <div class="conteudo">
+        <h2>Lista de Peças</h2>
 
-            <label for="limiteDePecas">Limitar Número de Peças:</label>
-            <select id="limiteDePecas" value="" onchange="ajustarLimiteDePecas()">
+        <label for="filtroArtista">Filtrar Artista:</label>
+        <select id="filtroArtista" value="" onchange="filtrarAtista()">
+        </select>
+
+        <label for="limiteDePecas">Limitar Número de Peças:</label>
+        <select id="limiteDePecas" value="" onchange="ajustarLimiteDePecas()">
             <option value="5" selected>5 pecas</option>
             <option value="15">15 pecas</option>
             <option value="25">25 pecas</option>
             <option value="50">50 pecas</option>
-            </select>
-            
-            <div id="pecas"></div>
-        </div>
+        </select>
 
+        <div id="pecas"></div>
+    </div>
+
+    <script>
+        var pecasDoBanco = localStorage.getItem("pecas");
+        var listaPecasDoBanco = JSON.parse(pecasDoBanco);
+        var selectFiltroArtista = document.getElementById("filtroArtista");
+        for (var peca of listaPecasDoBanco){
+            selectFiltroArtista.innerHTML = selectFiltroArtista.innerHTML +`<option value="${peca.artista}">${peca.artista}</option>` 
+        }
         
+    </script>
+
+    

@@ -46,6 +46,77 @@
             <div id="contatos"></div>
         </div>
 
+        
+        <script>
+
+            var filtrosDaPagina = {
+                telefone: "",
+                limite: 5,
+            };
+        
+            var contatoEmTexto = localStorage.getItem("contatos");
+            var contatos = JSON.parse(contatoEmTexto);
+        
+            //recuperamos a div que vamos imprimir os carros
+            var divContatos = document.getElementById("contatos");
+        
+            
+            
+            function imprimirContato(contato) {
+                var dataHoraPt = new Date(contato.dataHora).toLocaleString("pt-BR")
+                var textoDoContato = `
+                <div class="card">
+                    <header>
+                        <h3>${contato.nomeCompleto}</h3>
+                        <div><strong>Data/Hora:</strong> ${dataHoraPt}</div>
+                    </header>
+                    <p>
+                        <strong>Email:</strong> ${contato.email}<br>
+                        <strong>Telefone:</strong> ${contato.telefone}<br>
+                        <strong>Mensagem:</strong><br> ${contato.mensagem}
+                    </p>
+                 <div>
+                 `
+                 divContatos.innerHTML= divContatos.innerHTML + textoDoContato
+                 }
+        
+            function filtrarContatos() {
+            var filtroDeTelefone = document.getElementById("filtroDeTelefone");
+        
+            filtrosDaPagina.telefone = filtroDeTelefone.value;
+            filtrarTelefone();
+            }
+        
+            function filtrarTelefone(){
+                divContatos.innerHTML = "";
+               var contatosImpressos = 0;
+        
+               for (contato of contatos){
+                   var contatoValido = filtrosDaPagina.telefone === ""
+                   || (filtrosDaPagina.telefone === "CT" && contato.telefone)
+                   || (filtrosDaPagina.telefone === "ST" && !contato.telefone)
+                   if (!contatoValido){
+                       continue;
+                   }
+        
+                   imprimirContato(contato);
+                   contatosImpressos++;
+                   if (contatosImpressos === filtrosDaPagina.limite){
+                       break;
+                   }
+               }
+            }
+        
+            filtrarTelefone();
+        
+            function ajustarLimiteDeMensagens() {
+            var limiteDeMensagens = document.getElementById("limiteDeMensagens");
+            filtrosDaPagina.limite = Number(limiteDeMensagens.value);
+            filtrarTelefone();
+        }
+            
+            
+        </script>
     </body>
 </html>
         
