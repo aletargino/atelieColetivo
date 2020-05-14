@@ -25,8 +25,8 @@
     <div class="conteudo">
         <h2>Lista de Peças</h2>
 
-        <label for="filtroArtista">Filtrar Artista:</label>
-        <select id="filtroArtista" value="" onchange="filtrarAtista()">
+        <label for="filtroDeArtista">Filtrar Artista:</label>
+        <select id="filtroDeArtista" value="" onchange="filtrarAtista()">
         </select>
 
         <label for="limiteDePecas">Limitar Número de Peças:</label>
@@ -41,13 +41,65 @@
     </div>
 
     <script>
-        var pecasDoBanco = localStorage.getItem("pecas");
-        var listaPecasDoBanco = JSON.parse(pecasDoBanco);
-        var selectFiltroArtista = document.getElementById("filtroArtista");
-        for (var peca of listaPecasDoBanco){
-            selectFiltroArtista.innerHTML = selectFiltroArtista.innerHTML +`<option value="${peca.artista}">${peca.artista}</option>` 
-        }
-        
-    </script>
 
-    
+        var filtrosDaPagina = {
+        artista: "",
+        limite: 5,
+        };
+
+            
+            var pecaEmTexto = localStorage.getItem("pecas");
+            var pecas = JSON.parse(pecaEmTexto);
+        
+           
+            var divPecas = document.getElementById("pecas");
+        function imprimirPeca(peca) {
+
+        var aparecerImagem = "";
+        if (peca.imagem) {
+        aparecerImagem = `<img src="${peca.imagem}">`;
+        }
+
+        var cardDaPeca =`
+ <div class="card">
+    <header>
+        <h3>${peca.artista} ${peca.nome} / ${peca.preco} </h3>
+       
+    </header>
+    <div class="ima">
+        <p>${peca.descricao}</p>
+        ${aparecerImagem}
+    </div>
+</div>
+`
+
+divPecas.innerHTML = divPecas.innerHTML + cardDaPeca
+        }      
+
+        function filtrarArtista() {
+            var filtroDeArtista = document.getElementById("filtroDeArtista");
+            filtrosDaPagina.artista = filtroDeArtista.value;
+            filtrarPecas();
+        }
+function filtrarPecas() {
+   divPecas.innerHTML = "";
+   var pecasImpressas = 0;
+   for (peca of pecas) {
+       if (filtrosDaPagina.artista && peca.artista !== filtrosDaPagina.artista){
+           continue;
+       }
+       imprimirPeca(peca);
+       pecasImpressas++;
+       if (pecasImpressas === filtrosDaPagina.limite){
+           break;
+       }
+   }
+}
+filtrarPecas();
+
+function ajustarLimiteDePecas() {
+var limiteDePecas = document.getElementById("limiteDePecas");
+filtrosDaPagina.limite = Number(limiteDePecas.value);
+filtrarPecas();
+}
+    </script>
